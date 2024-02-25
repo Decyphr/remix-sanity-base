@@ -1,12 +1,41 @@
+import { MetaFunction, json, type LinksFunction } from "@remix-run/node";
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
+import { Suspense } from "react";
+import LiveVisualEditing from "~/components/live-visual-editing";
+import { getEnv } from "~/lib/env.server";
 
-export function Layout({ children }: { children: React.ReactNode }) {
+import styles from "~/styles/tailwind.css?url";
+
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return [
+    { title: data ? "Remix & Sanity" : "Error | Remix & Sanity" },
+    {
+      name: "description",
+      content: `Fresh website template using remix.run and sanity.io`,
+    },
+  ];
+};
+
+export async function loader() {
+  return json({ ENV: getEnv() });
+}
+
+export function Document({
+  children,
+  env = {},
+}: {
+  children: React.ReactNode;
+  env?: Record<string, string>;
+}) {
   return (
     <html lang="en">
       <head>
@@ -15,9 +44,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="dark">
         {children}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(env)}`,
+          }}
+        />
         <ScrollRestoration />
+        {ENV.SANITY_STUDIO_STEGA_ENABLED === "true" ? (
+          <Suspense>
+            <LiveVisualEditing />
+          </Suspense>
+        ) : null}
         <Scripts />
       </body>
     </html>
@@ -25,5 +64,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  const { ENV } = useLoaderData<typeof loader>();
+  return (
+    <Document env={ENV}>
+      <Outlet />
+    </Document>
+  );
 }

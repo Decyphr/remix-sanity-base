@@ -28,15 +28,10 @@ Run the Express server with Vite dev middleware:
 pnpm dev
 ```
 
-## Deployment
-First, build your app for production:
+## Deployment to Fly.io (In Progress)
+We will deploy our website to Fly.io using the [Fly CLI](https://fly.io/docs/getting-started/installing-flyctl/).
 
-```bash
-pnpm build
-```
 
-Then run the app in production mode:
 
-```bash
-pnpm start
-```
+
+

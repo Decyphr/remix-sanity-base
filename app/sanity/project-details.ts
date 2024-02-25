@@ -13,12 +13,8 @@ export const projectDetails = () => ({
 // Enable stega on production deploys, but NOT the non-production domain
 // Allow the production Studio to access non-production domains cross-origin
 
-// Vercel provides multiple URLs for a single deployment:
-// www.your-production-domain.com
-// <git-repo-slug>-git-<branch>-<username>.vercel.app
-// <git-repo-slug>-<sha>-<username>.vercel.app
-
 // This is used to enable stega on any URL except this one
+// TODO - change this to production URL
 export const PRODUCTION_URL = "https://sanity-remix-template.sanity.build";
 
 export const frontendUrl = ENV.SANITY_FRONTEND_URL ?? "http://localhost:3333";

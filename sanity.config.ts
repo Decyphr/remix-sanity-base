@@ -3,6 +3,7 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 
+import { Logo } from "~/sanity/plugins/studio-logo/logo";
 import { locate } from "~/sanity/presentation/locate";
 import { frontendUrl, projectDetails } from "~/sanity/project-details";
 import schema from "~/sanity/schema";
@@ -23,5 +24,10 @@ export const config = defineConfig({
   basePath: `/studio`,
   schema: {
     types: schema,
+  },
+  studio: {
+    components: {
+      logo: Logo,
+    },
   },
 });

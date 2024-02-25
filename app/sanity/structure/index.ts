@@ -1,4 +1,4 @@
-import { Settings } from "lucide-react";
+import { Home, Settings } from "lucide-react";
 import type {
   DefaultDocumentNodeResolver,
   StructureResolver,
@@ -13,13 +13,19 @@ export const structure: StructureResolver = (S) =>
     .id("root")
     .title("Content")
     .items([
+      // Singleton, homepage
+      S.documentListItem()
+        .schemaType("home")
+        .icon(Home)
+        .id("home")
+        .title("Homepage"),
+      S.divider(),
       // Singleton, site settings config
       S.documentListItem()
         .schemaType("settings")
         .icon(Settings)
         .id("settings")
         .title("Site Settings"),
-      S.divider(),
     ]);
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (
@@ -27,7 +33,7 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (
   { schemaType }
 ) => {
   switch (schemaType) {
-    case `settings`:
+    case `home`:
       return S.document().views([S.view.form()]);
     default:
       return S.document().views([S.view.form()]);

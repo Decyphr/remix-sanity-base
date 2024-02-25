@@ -1,12 +1,12 @@
 import { defineField, defineType } from "sanity";
 
-export const settingsSchema = defineType({
-  name: "settings",
-  title: "Settings",
+export const homeSchema = defineType({
+  name: "home",
+  title: "Home",
   type: "document",
   fields: [
     defineField({
-      name: "siteTitle",
+      name: "title",
       type: "string",
     }),
   ],

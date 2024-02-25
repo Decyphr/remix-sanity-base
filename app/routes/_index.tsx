@@ -1,6 +1,7 @@
 import { json, type MetaFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { useQuery } from "@sanity/react-loader";
+import { Button } from "~/components/ui/button";
 import { loadQuery } from "~/sanity/loader.server";
 import { HOME_QUERY } from "~/sanity/queries";
 import { Home } from "~/types";
@@ -46,6 +47,7 @@ export default function Index() {
   return (
     <div>
       <h1 className="text-xl">{data.title}</h1>
+      <Button>Styled Button</Button>
     </div>
   );
 }

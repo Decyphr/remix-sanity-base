@@ -4,6 +4,8 @@ import compression from "compression";
 import express from "express";
 import morgan from "morgan";
 
+import "dotenv/config";
+
 installGlobals();
 
 const viteDevServer =
@@ -48,7 +50,7 @@ app.use(morgan("tiny"));
 // handle SSR requests
 app.all("*", remixHandler);
 
-const port = process.env.PORT || 3333;
+const port = process.env.PORT || 3000;
 app.listen(port, () =>
   console.log(`Express server listening at http://localhost:${port}`)
 );

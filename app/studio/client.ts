@@ -4,7 +4,7 @@ import {
   projectId,
   stegaEnabled,
   studioUrl,
-} from "~/sanity/project-details";
+} from "~/studio/project-details";
 
 // Do not import this into client-side components unless lazy-loaded
 export const client = createClient({

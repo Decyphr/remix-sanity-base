@@ -1,5 +1,5 @@
 import * as queryStore from "@sanity/react-loader";
-import { client } from "~/sanity/client";
+import { client } from "~/studio/client";
 
 export const { loadQuery } = queryStore;
 

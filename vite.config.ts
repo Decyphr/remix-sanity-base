@@ -22,8 +22,6 @@ export default defineConfig({
     remix({
       // ignore all files in routes folder to prevent
       // default remix convention from picking up routes
-      ignoredRouteFiles: ["**/*"],
-      serverModuleFormat: "esm",
       routes: async (defineRoutes) => {
         return flatRoutes("routes", defineRoutes, {
           ignoredRouteFiles: [

@@ -3,11 +3,11 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 
-import { Logo } from "~/sanity/plugins/studio-logo/logo";
-import { locate } from "~/sanity/presentation/locate";
-import { frontendUrl, projectDetails } from "~/sanity/project-details";
-import schema from "~/sanity/schema";
-import { defaultDocumentNode, structure } from "~/sanity/structure";
+import { Logo } from "~/studio/plugins/studio-logo/logo";
+import { locate } from "~/studio/presentation/locate";
+import { frontendUrl, projectDetails } from "~/studio/project-details";
+import schema from "~/studio/schema";
+import { defaultDocumentNode, structure } from "~/studio/structure";
 
 export const config = defineConfig({
   ...projectDetails(),

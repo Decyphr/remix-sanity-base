@@ -1,4 +1,4 @@
-import { Home, Settings } from "lucide-react";
+import { HomeIcon, SettingsIcon } from "lucide-react";
 import type {
   DefaultDocumentNodeResolver,
   StructureResolver,
@@ -14,18 +14,20 @@ export const structure: StructureResolver = (S) =>
     .title("Content")
     .items([
       // Singleton, homepage
-      S.documentListItem()
-        .schemaType("home")
-        .icon(Home)
-        .id("home")
-        .title("Homepage"),
+      S.listItem()
+        .title("Homepage")
+        .icon(HomeIcon)
+        .child(S.document().schemaType("home").documentId("home")),
+      // Document list, all other documents
+      ...S.documentTypeListItems().filter(
+        (listItem) => !["home", "settings"].includes(listItem.getId()!)
+      ),
       S.divider(),
       // Singleton, site settings config
-      S.documentListItem()
-        .schemaType("settings")
-        .icon(Settings)
-        .id("settings")
-        .title("Site Settings"),
+      S.listItem()
+        .title("Settings")
+        .icon(SettingsIcon)
+        .child(S.document().schemaType("settings").documentId("settings")),
     ]);
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (

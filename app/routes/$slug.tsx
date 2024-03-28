@@ -1,10 +1,17 @@
-import { json, type MetaFunction } from "@remix-run/node";
+import { LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { useQuery } from "@sanity/react-loader";
-import { Button } from "~/components/ui/button";
+import invariant from "tiny-invariant";
 import { loadQuery } from "~/studio/loader.server";
-import { HOME_QUERY } from "~/studio/queries";
-import type { HomeType } from "~/types";
+import { PAGE_QUERY } from "~/studio/queries";
+import type { PageType } from "~/types";
+
+export async function loader({ params }: LoaderFunctionArgs) {
+  invariant(params.slug, "No slug provided.");
+  const initial = await loadQuery<PageType>(PAGE_QUERY, { slug: params.slug });
+
+  return json({ initial, query: PAGE_QUERY, params: { slug: params.slug } });
+}
 
 export const meta: MetaFunction = () => {
   return [
@@ -13,19 +20,13 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader() {
-  const initial = await loadQuery<HomeType>(HOME_QUERY);
-
-  return json({ initial, query: HOME_QUERY, params: {} });
-}
-
-export default function Homepage() {
+export default function DefaultPageRoute() {
   const { initial, query, params } = useLoaderData<typeof loader>();
   const { data, loading, error } = useQuery<typeof initial.data>(
     query,
     params,
     {
-      // @ts-expect-error - home
+      // @ts-expect-error - pages
       initial,
     }
   );
@@ -43,11 +44,10 @@ export default function Homepage() {
       </div>
     );
   }
-
   return (
     <div>
       <h1 className="text-xl">{data.title}</h1>
-      <Button>Styled Button</Button>
+      <p>{data.excerpt}</p>
     </div>
   );
 }

@@ -16,9 +16,7 @@ export interface PageType {
   _type: "page";
   _updatedAt: string; // ISO date string
   excerpt: string;
-  pageBuilder: Array<
-    HeroType | TextWithIllustrationType | GalleryType | FormType | VideoType
-  >;
+  pageBuilder: Array<HeroType | GalleryType | FormType | VideoType>;
   slug: SlugValue;
   title: string;
 }
@@ -38,14 +36,6 @@ export interface HeroType {
   heading: string;
   image: SanityImageField;
   tagline: string;
-}
-
-export interface TextWithIllustrationType {
-  _key: string;
-  _type: "textWithIllustration";
-  excerpt: PortableTextBlock[];
-  heading: string;
-  image: SanityImageField;
 }
 
 export interface GalleryType {

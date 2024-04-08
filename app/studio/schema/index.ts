@@ -9,8 +9,12 @@ import { blockContentSimpleType } from "~/studio/schema/blocks/block-content-sim
 import { formType } from "~/studio/schema/blocks/form";
 import { heroType } from "~/studio/schema/blocks/hero";
 import { imageGalleryType } from "~/studio/schema/blocks/image-gallery";
-import { textWithIllustrationType } from "~/studio/schema/blocks/text-with-illustration";
+import { linkType } from "~/studio/schema/blocks/link";
 import { videoType } from "~/studio/schema/blocks/video";
+import { auxiliaryNavigationType } from "~/studio/schema/navs/auxiliary";
+import { footerNavigationType } from "~/studio/schema/navs/footer";
+import { headerNavigationType } from "~/studio/schema/navs/header";
+import { navItemType } from "~/studio/schema/navs/nav-item";
 
 export default [
   // blocks
@@ -18,9 +22,14 @@ export default [
   blockContentType,
   formType,
   heroType,
+  linkType,
   imageGalleryType,
-  textWithIllustrationType,
   videoType,
+  // navs
+  navItemType,
+  auxiliaryNavigationType,
+  footerNavigationType,
+  headerNavigationType,
   // documents
   homeType,
   pageType,

@@ -33,6 +33,14 @@ export const pageType = defineType({
       type: "text",
     }),
     defineField({
+      name: "featuredImage",
+      title: "Featured Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: "pageBuilder",
       type: "array",
       title: "Page builder",
@@ -41,10 +49,6 @@ export const pageType = defineType({
         defineArrayMember({
           name: "hero",
           type: "hero",
-        }),
-        defineArrayMember({
-          name: "textWithIllustration",
-          type: "textWithIllustration",
         }),
         defineArrayMember({
           name: "gallery",
@@ -67,4 +71,18 @@ export const pageType = defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: "title",
+      slug: "slug",
+      image: "featuredImage",
+    },
+    prepare({ title, slug, image }) {
+      return {
+        title: title || "Untitled Page",
+        subtitle: `/${slug.current}` || "No slug",
+        image: image.asset || FileTextIcon,
+      };
+    },
+  },
 });

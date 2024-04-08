@@ -1,4 +1,11 @@
-import { HomeIcon, SettingsIcon } from "lucide-react";
+import {
+  AppWindowIcon,
+  HomeIcon,
+  MenuIcon,
+  PanelBottomIcon,
+  PanelTopIcon,
+  SettingsIcon,
+} from "lucide-react";
 import type {
   DefaultDocumentNodeResolver,
   StructureResolver,
@@ -19,10 +26,46 @@ export const structure: StructureResolver = (S) =>
         .icon(HomeIcon)
         .child(S.document().schemaType("home").documentId("home")),
       // Document list, all other documents
-      ...S.documentTypeListItems().filter(
-        (listItem) => !["home", "settings"].includes(listItem.getId()!)
+      ...S.documentTypeListItems().filter((listItem) =>
+        ["page"].includes(listItem.getId()!)
       ),
       S.divider(),
+      S.listItem()
+        .title("Navigation")
+        .icon(MenuIcon)
+        .child(
+          S.list()
+            .title("Navigation")
+            .items([
+              S.listItem()
+                .title("Header")
+                .icon(PanelTopIcon)
+                .child(
+                  S.document()
+                    .title("Header Navigation")
+                    .schemaType("headerNavigation")
+                    .documentId("headerNavigation")
+                ),
+              S.listItem()
+                .title("Footer")
+                .icon(PanelBottomIcon)
+                .child(
+                  S.document()
+                    .title("Footer Navigation")
+                    .schemaType("footerNavigation")
+                    .documentId("footerNavigation")
+                ),
+              S.listItem()
+                .title("Auxiliary")
+                .icon(AppWindowIcon)
+                .child(
+                  S.document()
+                    .title("Auxiliary Navigation")
+                    .schemaType("auxiliaryNavigation")
+                    .documentId("auxiliaryNavigation")
+                ),
+            ])
+        ),
       // Singleton, site settings config
       S.listItem()
         .title("Settings")

@@ -40,14 +40,16 @@ export default function DefaultPageRoute() {
   if (!data) {
     return (
       <div>
-        Add homepage content at <Link to="/studio"></Link>
+        Add homepage content in the <Link to="/studio">Sanity Studio</Link>
       </div>
     );
   }
+
   return (
     <div>
       <h1 className="text-xl">{data.title}</h1>
       <p>{data.excerpt}</p>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 }

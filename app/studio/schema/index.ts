@@ -4,8 +4,8 @@ import { pageType } from "~/studio/schema/page";
 import { settingsType } from "~/studio/schema/settings";
 
 // blocks
-import { blockContentType } from "~/studio/schema/blocks/block-content";
-import { blockContentSimpleType } from "~/studio/schema/blocks/block-content-simple";
+import { contentBlockType } from "~/studio/schema/blocks/content";
+import { blockContentSimpleType } from "~/studio/schema/blocks/content-simple";
 import { formType } from "~/studio/schema/blocks/form";
 import { heroType } from "~/studio/schema/blocks/hero";
 import { imageGalleryType } from "~/studio/schema/blocks/image-gallery";
@@ -19,7 +19,7 @@ import { navItemType } from "~/studio/schema/navs/nav-item";
 export default [
   // blocks
   blockContentSimpleType,
-  blockContentType,
+  contentBlockType,
   formType,
   heroType,
   linkType,

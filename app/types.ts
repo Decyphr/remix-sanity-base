@@ -1,5 +1,17 @@
 import type { PortableTextBlock, SlugValue } from "sanity";
 
+export interface SanityLink {
+  _type: "link";
+  isExternalLink: boolean;
+  newTab: boolean;
+  text: string;
+  url?: URL;
+  internalLink?: {
+    _ref: string;
+    _type: "reference";
+  };
+}
+
 export interface HomeType {
   _createdAt: string; // ISO date string
   _id: string;

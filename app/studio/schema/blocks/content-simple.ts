@@ -1,15 +1,5 @@
-import { defineArrayMember, defineType } from "sanity";
+import { UrlRule, defineArrayMember, defineField, defineType } from "sanity";
 
-/**
- * This is the schema definition for the rich text fields used for
- * for this blog studio. When you import it in schemas.js it can be
- * reused in other parts of the studio with:
- *  {
- *    name: 'someName',
- *    title: 'Some title',
- *    type: 'blockContent'
- *  }
- */
 export const blockContentSimpleType = defineType({
   title: "Block Content Simple",
   name: "blockContentSimple",
@@ -35,15 +25,33 @@ export const blockContentSimpleType = defineType({
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
-            title: "URL",
             name: "link",
             type: "object",
+            title: "Link",
             fields: [
-              {
+              defineField({
+                name: "text",
+                title: "Text",
+                type: "string",
+              }),
+              defineField({
+                name: "url",
                 title: "URL",
-                name: "href",
                 type: "url",
-              },
+                options: {
+                  validation: (rule: UrlRule) =>
+                    rule.uri({
+                      allowRelative: true, // Allows for internal links
+                      scheme: ["http", "https", "mailto", "tel"],
+                    }),
+                },
+              }),
+              defineField({
+                name: "internalLink",
+                title: "Internal Link",
+                type: "reference",
+                to: [{ type: "page" }], // Reference to your internal page schema
+              }),
             ],
           },
         ],

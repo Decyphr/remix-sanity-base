@@ -1,10 +1,10 @@
-import { AlignLeftIcon } from "lucide-react";
+import { CaptionsIcon } from "lucide-react";
 import { defineField, defineType } from "sanity";
 
 export const formType = defineType({
   name: "form",
   type: "object",
-  icon: AlignLeftIcon,
+  icon: CaptionsIcon,
   fields: [
     defineField({
       name: "heading",

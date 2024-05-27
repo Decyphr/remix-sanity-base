@@ -2,7 +2,7 @@ import * as z from "zod";
 
 const imageSchema = z.object({
   asset: z.object({
-    _ref: z.string(),
+    url: z.string(),
   }),
   _type: z.string(),
 });
@@ -19,6 +19,25 @@ export const seoSchema = z.object({
 });
 
 export const pageBuilderSchema = z.any();
+
+export const siteSettingsValidator = z.object({
+  siteTitle: z.string(),
+  description: z.string().nullable(),
+  defaultSeo: z.string().nullable(),
+  contactEmail: z.string().nullable(),
+  contactPhone: z.string().nullable(),
+  socialMedia: z.object({
+    facebook: z.string().nullable(),
+    instagram: z.string().nullable(),
+    twitter: z.string().nullable(),
+    linkedin: z.string().nullable(),
+  }),
+  logo: imageSchema,
+});
+
+export const homeTypeValidator = z.object({
+  title: z.string(),
+});
 
 export const pageTypeValidator = z.object({
   title: z.string(),

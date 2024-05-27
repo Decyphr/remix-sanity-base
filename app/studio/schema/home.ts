@@ -1,4 +1,5 @@
-import { defineField, defineType } from "sanity";
+import { FileTextIcon } from "lucide-react";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const homeType = defineType({
   name: "home",
@@ -18,12 +19,49 @@ export const homeType = defineType({
     defineField({
       name: "title",
       type: "string",
-      group: "content",
     }),
     defineField({
       name: "excerpt",
       type: "text",
+    }),
+    defineField({
+      name: "pageBuilder",
+      type: "array",
+      title: "Page builder",
       group: "content",
+      of: [
+        defineArrayMember({
+          name: "hero",
+          type: "hero",
+        }),
+        defineArrayMember({
+          name: "contentBlock",
+          type: "contentBlock",
+        }),
+        defineArrayMember({
+          name: "gallery",
+          type: "gallery",
+        }),
+        defineArrayMember({
+          name: "form",
+          type: "form",
+        }),
+        defineArrayMember({
+          name: "video",
+          type: "video",
+        }),
+        defineArrayMember({
+          name: "callToAction",
+          type: "reference",
+          icon: FileTextIcon,
+          to: [{ type: "page" }],
+        }),
+      ],
+    }),
+    defineField({
+      name: "seo",
+      type: "seo",
+      group: "seo",
     }),
   ],
 });

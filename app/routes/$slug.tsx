@@ -2,6 +2,7 @@ import { LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { useQuery } from "@sanity/react-loader";
 import invariant from "tiny-invariant";
+import PageBuilder from "~/components/page-builder";
 import { loadQuery } from "~/studio/loader.server";
 import { PAGE_QUERY } from "~/studio/queries";
 import type { PageType } from "~/types";
@@ -26,7 +27,7 @@ export default function DefaultPageRoute() {
     query,
     params,
     {
-      // @ts-expect-error - pages
+      // @ts-expect-error next-line
       initial,
     }
   );
@@ -49,7 +50,7 @@ export default function DefaultPageRoute() {
     <div>
       <h1 className="text-xl">{data.title}</h1>
       <p>{data.excerpt}</p>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <PageBuilder blocks={data.pageBuilder} />
     </div>
   );
 }

@@ -39,7 +39,7 @@ export default function Homepage() {
   if (!data) {
     return (
       <div>
-        Add homepage content at <Link to="/studio"></Link>
+        Add homepage content at <Link to="/studio">/studio</Link>
       </div>
     );
   }

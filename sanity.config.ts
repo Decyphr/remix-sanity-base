@@ -17,7 +17,9 @@ export const config = defineConfig({
     structureTool({ structure, defaultDocumentNode }),
     presentationTool({
       previewUrl: frontendUrl,
-      locate,
+      resolve: {
+        locations: locate,
+      },
     }),
     visionTool(),
   ],

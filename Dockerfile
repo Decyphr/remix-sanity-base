@@ -13,7 +13,7 @@ WORKDIR /app
 ENV NODE_ENV="production"
 
 # Install pnpm
-ARG PNPM_VERSION=8.15.4
+ARG PNPM_VERSION=^9.1.3
 RUN npm install -g pnpm@$PNPM_VERSION
 
 
@@ -45,5 +45,5 @@ FROM base
 COPY --from=build /app /app
 
 # Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
+EXPOSE 8080
 CMD [ "pnpm", "start" ]

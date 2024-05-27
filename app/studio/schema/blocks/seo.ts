@@ -7,36 +7,31 @@ export const seoType = defineType({
   fields: [
     defineField({
       name: "title",
-      title: "Meta Title",
+      title: "Title for SEO & Social Sharing",
       description:
-        "Leave empty to use the page title. (60 characters max. Optimized length: 50-60 characters)",
+        "Make it as enticing as possible to convert users in social feeds and Google searches. Ideally between 15 and 70 characters.",
       type: "string",
       validation: (Rule) =>
-        Rule.max(60).warning("Meta Title should be under 60 characters."),
-    }),
-    defineField({
-      name: "description",
-      title: "Meta Description",
-      description:
-        "Leave empty to use the page excerpt. (160 characters max. Optimized length: 140-160 characters)",
-      type: "text",
-      validation: (Rule) =>
-        Rule.max(160).warning(
-          "Meta Description should be under 160 characters."
+        Rule.max(70).warning(
+          "Title should be no more than 70 characters long."
         ),
     }),
     defineField({
-      name: "keywords",
-      title: "Keywords",
-      type: "array",
-      of: [{ type: "string" }],
-      options: {
-        layout: "tags",
-      },
+      name: "description",
+      title: "Short paragraph for SEO & Social Sharing (Meta Description)",
+      description:
+        "⚡ Optional but highly encouraged as it'll help you convert more visitors from Google & social. Ideally between 70 and 160 characters.",
+      type: "text",
+      validation: (Rule) =>
+        Rule.max(160).warning(
+          "Description should be no more than 160 characters."
+        ),
     }),
     defineField({
       name: "image",
-      title: "Meta Image",
+      title: "Social Sharing Image",
+      description:
+        "⚡ Optional but highly encouraged for increasing conversion rates for links to this page shared in social media.",
       type: "image",
       options: {
         hotspot: true,

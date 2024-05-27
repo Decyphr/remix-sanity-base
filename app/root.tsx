@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
+import { GeneralErrorBoundary } from "~/components/error-boundary";
 import { getEnv } from "~/lib/env.server";
 
 import styles from "~/styles/tailwind.css?url";
@@ -61,6 +62,14 @@ export default function App() {
   return (
     <Document env={ENV}>
       <Outlet />
+    </Document>
+  );
+}
+
+export function ErrorBoundary() {
+  return (
+    <Document>
+      <GeneralErrorBoundary />
     </Document>
   );
 }

@@ -1,11 +1,12 @@
 import * as z from "zod";
 
-const imageSchema = z.object({
-  asset: z.object({
-    url: z.string(),
-  }),
-  _type: z.string(),
-});
+const imageSchema = z
+  .object({
+    asset: z.object({
+      _ref: z.string(),
+    }),
+  })
+  .nullable();
 
 const slugSchema = z.object({
   current: z.string(),
@@ -23,7 +24,7 @@ export const pageBuilderSchema = z.any();
 export const siteSettingsValidator = z.object({
   siteTitle: z.string(),
   description: z.string().nullable(),
-  defaultSeo: z.string().nullable(),
+  siteSEOSettings: z.string().nullable(),
   contactEmail: z.string().nullable(),
   contactPhone: z.string().nullable(),
   socialMedia: z.object({

@@ -1,6 +1,7 @@
 import { LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
+import { GeneralErrorBoundary } from "~/components/error-boundary";
 import PageBuilder from "~/components/page-builder";
 import { pageTypeValidator } from "~/lib/validators";
 import { loadQueryOptions } from "~/studio/load-query-options.server";
@@ -47,4 +48,8 @@ export default function DefaultPageRoute() {
       <PageBuilder blocks={data.pageBuilder} />
     </div>
   );
+}
+
+export function ErrorBoundary() {
+  return <GeneralErrorBoundary />;
 }

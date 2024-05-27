@@ -12,12 +12,14 @@ const slugSchema = z.object({
   current: z.string(),
 });
 
-export const seoSchema = z.object({
-  title: z.string(),
-  description: z.string(),
-  image: imageSchema,
-  noindex: z.boolean(),
-});
+export const seoSchema = z
+  .object({
+    title: z.string(),
+    description: z.string(),
+    image: imageSchema,
+    noindex: z.boolean(),
+  })
+  .nullable();
 
 export const pageBuilderSchema = z.any();
 
@@ -38,6 +40,9 @@ export const siteSettingsValidator = z.object({
 
 export const homeTypeValidator = z.object({
   title: z.string(),
+  excerpt: z.string().nullable(),
+  pageBuilder: pageBuilderSchema,
+  seo: seoSchema,
 });
 
 export const pageTypeValidator = z.object({

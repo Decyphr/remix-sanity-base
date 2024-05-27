@@ -13,14 +13,23 @@ export const meta: MetaFunction<
   {
     "routes/_website": typeof layoutLoader;
   }
-> = ({ matches }) => {
+> = ({ data, matches }) => {
   const layoutData = matches.find(
     (match) => match.id === `routes/_website`
   )?.data;
   const siteSettings = layoutData ? layoutData.initial.data : null;
   const title = [siteSettings?.siteTitle].filter(Boolean).join(" | ");
 
-  return [{ title }];
+  const description =
+    data?.data.seo?.description ?? siteSettings?.description ?? "";
+
+  return [
+    { title },
+    { property: "description", content: description },
+    { property: "twitter:card", content: "summary_large_image" },
+    { property: "twitter:title", content: title },
+    { property: "og:title", content: title },
+  ];
 };
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {

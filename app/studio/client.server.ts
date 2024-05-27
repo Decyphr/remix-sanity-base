@@ -1,10 +1,11 @@
 import { createClient } from "@sanity/client";
+
 import { apiVersion, dataset, projectId } from "~/studio/project-details";
 
-// Do not import this into client-side components unless lazy-loaded
-export const client = createClient({
+export const viewClient = createClient({
   projectId,
   dataset,
-  useCdn: true,
   apiVersion,
+  useCdn: false,
+  token: process.env.SANITY_READ_TOKEN,
 });

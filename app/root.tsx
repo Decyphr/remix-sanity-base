@@ -7,8 +7,6 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { Suspense } from "react";
-import LiveVisualEditing from "~/components/live-visual-editing";
 import { getEnv } from "~/lib/env.server";
 
 import styles from "~/styles/tailwind.css?url";
@@ -46,17 +44,12 @@ export function Document({
       </head>
       <body className="dark">
         {children}
+        <ScrollRestoration />
         <script
           dangerouslySetInnerHTML={{
             __html: `window.ENV = ${JSON.stringify(env)}`,
           }}
         />
-        <ScrollRestoration />
-        {ENV.SANITY_STUDIO_STEGA_ENABLED === "true" ? (
-          <Suspense>
-            <LiveVisualEditing />
-          </Suspense>
-        ) : null}
         <Scripts />
       </body>
     </html>

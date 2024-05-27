@@ -10,6 +10,7 @@ import { formType } from "~/studio/schema/blocks/form";
 import { heroType } from "~/studio/schema/blocks/hero";
 import { imageGalleryType } from "~/studio/schema/blocks/image-gallery";
 import { linkType } from "~/studio/schema/blocks/link";
+import { seoType } from "~/studio/schema/blocks/seo";
 import { videoType } from "~/studio/schema/blocks/video";
 import { auxiliaryNavigationType } from "~/studio/schema/navs/auxiliary";
 import { footerNavigationType } from "~/studio/schema/navs/footer";
@@ -25,6 +26,7 @@ export default [
   linkType,
   imageGalleryType,
   videoType,
+  seoType,
   // navs
   navItemType,
   auxiliaryNavigationType,

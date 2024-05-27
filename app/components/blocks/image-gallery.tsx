@@ -1,3 +1,4 @@
+import { SanityImage } from "~/components/sanity-image";
 import { Card, CardContent } from "~/components/ui/card";
 import {
   Carousel,
@@ -14,20 +15,16 @@ export default function ImageGalleryBlock({
 }: {
   gallery: GalleryType;
 }) {
-  console.log(gallery);
-
   return (
     <Carousel className="w-full max-w-xl mx-auto">
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
+        {gallery.images.map((image, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-video items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
+            <Card className="overflow-hidden">
+              <CardContent className="flex aspect-video items-center justify-center p-0 overflow-hidden">
+                <SanityImage image={image} />
+              </CardContent>
+            </Card>
           </CarouselItem>
         ))}
       </CarouselContent>

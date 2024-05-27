@@ -9,8 +9,6 @@ export default function PageBuilder({
 }: {
   blocks: PageType["pageBuilder"];
 }) {
-  console.log(blocks);
-
   return (
     <div className="flex flex-col gap-6">
       {blocks.map((block, idx) => {

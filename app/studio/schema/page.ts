@@ -74,6 +74,11 @@ export const pageType = defineType({
         }),
       ],
     }),
+    defineField({
+      name: "seo",
+      type: "seo",
+      group: "seo",
+    }),
   ],
   preview: {
     select: {

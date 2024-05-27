@@ -19,12 +19,7 @@ export default function StudioPage() {
   return (
     <Hydrated>
       <div id="app">
-        <Studio
-          config={config}
-          // To enable guests view-only access to your Studio,
-          // uncomment this line!
-          // unstable_noAuthBoundary
-        />
+        <Studio config={config} />
       </div>
     </Hydrated>
   );

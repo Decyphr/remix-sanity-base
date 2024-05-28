@@ -25,7 +25,7 @@ export const meta: MetaFunction<
 
   return [
     { title },
-    { property: "description", content: description },
+    { name: "description", content: description },
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:title", content: title },
     { property: "og:title", content: title },
